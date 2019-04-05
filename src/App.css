@@ -35,12 +35,22 @@
 }
 
 .scrollable-container {
-  height: 200px;
+  border-left: 1px solid #E8E8E8;
+  border-right: 1px solid #E8E8E8;
+  height: 490px;
   overflow-y: scroll;
 }
 
 .background {
   padding-top: 60px;
-  height: 1600px;
+  height: 160px;
   background-image: url('https://zos.alipayobjects.com/rmsportal/RmjwQiJorKyobvI.jpg');
+}
+
+.firstRow {
+  height: 500px;
+}
+
+.blank {
+  height: 50px;
 }
