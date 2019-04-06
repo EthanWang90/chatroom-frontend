@@ -1,5 +1,4 @@
 import React from 'react';
-import Message from './Message';
 import { Card } from 'antd';
 import {Row, Col} from 'antd';
 
@@ -13,7 +12,6 @@ export default class Iframe extends React.Component{
     }
 
     componentWillMount(){
-        console.log(this.props.messageArr)
         this.setState({
             messageArr: this.props.messageArr,
         })

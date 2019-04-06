@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Row, Col } from 'antd';
-import Button from 'antd/lib/button';
 import Iframe from './components/Iframe';
 import InputText from './components/InputText';
 // import { crypto } from 'crypto';
@@ -33,14 +31,10 @@ class App extends Component {
     let str = this.randomStr(8);
     this.setState({
       id: str
-    },()=>{
-      console.log(str)
     })
   }
 
   componentDidMount(){
-
-    console.log(this.state.id);
 
     chatSocket = new WebSocket(
       'wss://' + 'shrouded-sea-30945.herokuapp.com' +
@@ -59,7 +53,7 @@ class App extends Component {
           'message': message,
           'myWord': myWord
         }
-        console.log(tmp.push(obj));
+        tmp.push(obj);
         this.setState({
           messageArr:tmp,
         })

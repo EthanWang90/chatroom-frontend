@@ -2,7 +2,6 @@ import React from 'react';
 import { Input } from 'antd';
 import { Row, Col } from 'antd';
 import { Button } from 'antd';
-import { timeout } from 'q';
 
 const { TextArea } = Input;
 
@@ -15,7 +14,6 @@ export default class InputText extends React.Component{
         }
     }
     changeTest=(event)=>{
-        console.log(event.target.value);
         this.setState({
             value: event.target.value,
         })
