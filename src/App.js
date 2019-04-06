@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Row, Col, Modal} from 'antd';
+import { Row, Col, Modal, Icon} from 'antd';
 import Iframe from './components/Iframe';
 import InputText from './components/InputText';
 // import { crypto } from 'crypto';
@@ -134,6 +134,20 @@ class App extends Component {
         <Row>
           <Col xs={{ span: 22, offset: 1 }} sm={{ span: 8, offset: 8 }}>
             <InputText sendMessage={this.sendMessage}></InputText>
+          </Col>
+        </Row>
+        <div style={{height:'20px'}}></div>
+        <Row>
+          <Col xs={{ span: 22, offset: 1 }} sm={{ span: 8, offset: 8 }}>
+            <Row>
+              <Col xs={{ span: 22, offset: 1}}><Icon type="user" />Ethan Wang</Col>
+            </Row>
+            <Row>
+              <Col xs={{ span: 22, offset: 1}}><Icon type="mail" />wyynzmail@gmail.com</Col>
+            </Row>
+            <Row>
+              <Col xs={{ span: 22, offset: 1}}><Icon type="tags" />React, Ant, Ant Motion, WebSocket, Django, Django-Channels, Redis, Heroku</Col>
+            </Row>
           </Col>
         </Row>
       </div>
