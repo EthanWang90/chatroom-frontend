@@ -14,7 +14,7 @@ class App extends Component {
     this.state = {
       messageArr: [],
       id: '',
-      ModalText: 'Content of the modal',
+      ModalText: 'The Heroku server has terminated the connection, would you like to reconnect?',
       visible: false,
       confirmLoading: false,
     }
@@ -43,7 +43,7 @@ class App extends Component {
 
   handleOk = () => {
     this.setState({
-      ModalText: 'The Heroku server has terminated the connection, would you like to reconnect?',
+      ModalText: 'Re-connecting to the Heroku server...',
       confirmLoading: true,
     });
     setTimeout(() => {
