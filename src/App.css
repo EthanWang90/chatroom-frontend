@@ -39,6 +39,7 @@
   border-right: 1px solid #E8E8E8;
   height: 490px;
   overflow-y: scroll;
+  scroll-margin-bottom: 5;
   /* SCROLLBAR-FACE-COLOR:   rgb(10,236,209);   //滚动条凸出部分的颜色 
   SCROLLBAR-HIGHLIGHT-COLOR:   rgb(23,255,155);//滚动条空白部分的颜色 
   SCROLLBAR-SHADOW-COLOR:   rgb(255,116,23);//立体滚动条阴影的颜色 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Row, Col } from 'antd';
+import { Row, Col, Modal} from 'antd';
 import Iframe from './components/Iframe';
 import InputText from './components/InputText';
 // import { crypto } from 'crypto';
@@ -13,7 +13,10 @@ class App extends Component {
     super(props);
     this.state = {
       messageArr: [],
-      id: ''
+      id: '',
+      ModalText: 'Content of the modal',
+      visible: false,
+      confirmLoading: false,
     }
   }
 
@@ -35,7 +38,46 @@ class App extends Component {
   }
 
   componentDidMount(){
+    this.eachConn();
+  }
 
+  handleOk = () => {
+    this.setState({
+      ModalText: 'The Heroku server has terminated the connection, would you like to reconnect?',
+      confirmLoading: true,
+    });
+    setTimeout(() => {
+      this.eachConn();
+      this.setState({
+        visible: false,
+        confirmLoading: false,
+      });
+    }, 2000);
+  }
+
+  handleCancel = () => {
+    console.log('Clicked cancel button');
+    this.setState({
+      visible: false,
+    });
+  }
+
+  sendMessage=(message)=>{
+    try{
+      chatSocket.send(JSON.stringify({
+        'message': message,
+        'id': this.state.id
+      }));
+    }
+    catch(e){
+      console.log(e);
+      this.setState({
+        visible: true,
+      });
+    }
+  }
+
+  eachConn=()=>{
     chatSocket = new WebSocket(
       'wss://' + 'shrouded-sea-30945.herokuapp.com' +
       '/ws/chat/' + 'testroom/');
@@ -60,16 +102,12 @@ class App extends Component {
         // document.querySelector('#chat-log').value += (message + '\n');
     };
 
-    chatSocket.onclose = function(e) {
+    chatSocket.onclose=(e)=>{
       console.error('Chat socket closed unexpectedly');
+      this.setState({
+        visible: true,
+      });
     };
-  }
-
-  sendMessage=(message)=>{
-    chatSocket.send(JSON.stringify({
-      'message': message,
-      'id': this.state.id
-    }));
   }
 
   render() {
@@ -82,6 +120,15 @@ class App extends Component {
             <Iframe messageArr={this.state.messageArr}></Iframe>
           </Col>
         </Row>
+        <Modal
+          title="Notice"
+          visible={this.state.visible}
+          onOk={this.handleOk}
+          confirmLoading={this.state.confirmLoading}
+          onCancel={this.handleCancel}
+        >
+          <p>{this.state.ModalText}</p>
+        </Modal>
         <Row className="blank">
         </Row>
         <Row>

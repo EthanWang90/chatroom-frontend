@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col} from 'antd';
+import {Row, Col, Tag} from 'antd';
 import QueueAnim from 'rc-queue-anim';
 
 export default class Iframe extends React.Component{
@@ -28,10 +28,14 @@ export default class Iframe extends React.Component{
     render(){
         return(
             <div className="scrollable-container">
+                <div>
+                    <Tag color="cyan">Welcome!</Tag>
+                </div>
+                <div style={{height:"20px"}}></div>
                 {
                     this.props.messageArr.map((value,index)=>{
                         return (
-                            <div key={index}>
+                            <div key={index} style={{fontFamily:"'Carter One', cursive"}}>
                                 <Row>
                                     {
                                         value['myWord']?(
@@ -45,7 +49,7 @@ export default class Iframe extends React.Component{
                                         ):(
                                             <Col xs={{span:8, offset:2}}>
                                                 <QueueAnim delay={300} className="queue-simple">
-                                                    <div style={{borderRadius:"5px", backgroundColor:"lightgreen", height:"auto", width:"auto", wordWrap:'break-word', overflow:'hidden'}}>
+                                                    <div key="b" style={{borderRadius:"5px", backgroundColor:"lightgreen", height:"auto", width:"auto", wordWrap:'break-word', overflow:'hidden'}}>
                                                         {value['message']}
                                                     </div>
                                                 </QueueAnim>
