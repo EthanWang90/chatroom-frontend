@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card } from 'antd';
 import {Row, Col} from 'antd';
+import QueueAnim from 'rc-queue-anim';
 
 export default class Iframe extends React.Component{
 
@@ -36,15 +36,19 @@ export default class Iframe extends React.Component{
                                     {
                                         value['myWord']?(
                                             <Col xs={{span:8, offset:14}}>
-                                                <Card size={'small'} bordered={false} style={{backgroundColor:"lightblue", height:"auto", width:"auto", wordWrap:'break-word', overflow:'hidden'}}>
-                                                    <p>{value['message']}</p>
-                                                </Card>
+                                                <QueueAnim delay={300} className="queue-simple">
+                                                    <div key="a" style={{borderRadius:"5px", backgroundColor:"lightblue", height:"auto",width:"auto", wordWrap:'break-word', overflow:'hidden'}}>
+                                                        {value['message']}
+                                                    </div>
+                                                </QueueAnim>
                                             </Col>
                                         ):(
                                             <Col xs={{span:8, offset:2}}>
-                                                <Card size={'small'} bordered={false} style={{backgroundColor:"lightgreen", height:"auto", width:"auto", wordWrap:'break-word', overflow:'hidden'}}>
-                                                    <p>{value['message']}</p>
-                                                </Card>
+                                                <QueueAnim delay={300} className="queue-simple">
+                                                    <div style={{borderRadius:"5px", backgroundColor:"lightgreen", height:"auto", width:"auto", wordWrap:'break-word', overflow:'hidden'}}>
+                                                        {value['message']}
+                                                    </div>
+                                                </QueueAnim>
                                             </Col>
                                         )
                                     }

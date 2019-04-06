@@ -28,10 +28,11 @@ export default class InputText extends React.Component{
 
     render(){
         return(
-            <Row gutter={16}>
-                <Col xs={{span:18, offset:1}}>
-                    <TextArea value={this.state.value} rows={3} onChange={this.changeTest}></TextArea>
+            <Row>
+                <Col xs={{span:17, offset:1}}>
+                    <TextArea placeholder="Input something here..." value={this.state.value} rows={3} onChange={this.changeTest}></TextArea>
                 </Col>
+                <Col xs={1}></Col>
                 <Col xs={4}>
                     <Button onClick={()=>{this.clickTest();}} type="primary" size={"large"} style={{height:"73px"}}>Send</Button>
                 </Col>
