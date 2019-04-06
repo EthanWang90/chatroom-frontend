@@ -31,8 +31,8 @@ export default class InputText extends React.Component{
     render(){
         return(
             <Row gutter={16}>
-                <Col xs={20}>
-                    <TextArea rows={3} onChange={this.changeTest}>{this.state.value}</TextArea>
+                <Col xs={{span:18, offset:1}}>
+                    <TextArea value={this.state.value} rows={3} onChange={this.changeTest}></TextArea>
                 </Col>
                 <Col xs={4}>
                     <Button onClick={()=>{this.clickTest();}} type="primary" size={"large"} style={{height:"73px"}}>Send</Button>

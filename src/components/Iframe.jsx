@@ -35,11 +35,21 @@ export default class Iframe extends React.Component{
                         return (
                             <div key={index}>
                                 <Row>
-                                    <Col xs={{span:8, offset:2}}>
-                                        <Card size={'small'} bordered={false} style={{backgroundColor:"lightblue", height:"auto", width:"auto", wordWrap:'break-word', overflow:'hidden'}}>
-                                            <p>{value}</p>
-                                        </Card>
-                                    </Col>
+                                    {
+                                        value['myWord']?(
+                                            <Col xs={{span:8, offset:14}}>
+                                                <Card size={'small'} bordered={false} style={{backgroundColor:"lightblue", height:"auto", width:"auto", wordWrap:'break-word', overflow:'hidden'}}>
+                                                    <p>{value['message']}</p>
+                                                </Card>
+                                            </Col>
+                                        ):(
+                                            <Col xs={{span:8, offset:2}}>
+                                                <Card size={'small'} bordered={false} style={{backgroundColor:"lightgreen", height:"auto", width:"auto", wordWrap:'break-word', overflow:'hidden'}}>
+                                                    <p>{value['message']}</p>
+                                                </Card>
+                                            </Col>
+                                        )
+                                    }
                                 </Row>
                                 <div style={{height:"20px"}}></div>
                             </div>

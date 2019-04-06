@@ -5,6 +5,7 @@ import { Row, Col } from 'antd';
 import Button from 'antd/lib/button';
 import Iframe from './components/Iframe';
 import InputText from './components/InputText';
+// import { crypto } from 'crypto';
 
 var chatSocket;
 
@@ -13,28 +14,54 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      messageArr: [1,2,3,4,5]
+      messageArr: [],
+      id: ''
     }
   }
 
+  randomStr=(len)=>{
+    var str = '';
+    var dict = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-';
+    for(var i = 0;i < len;i++){
+      var index = Math.floor(Math.random()*dict.length);
+      str += dict[index];
+    }
+    return str;
+  }
+
+  componentWillMount(){
+    let str = this.randomStr(8);
+    this.setState({
+      id: str
+    },()=>{
+      console.log(str)
+    })
+  }
+
   componentDidMount(){
+
+    console.log(this.state.id);
+
     chatSocket = new WebSocket(
       'wss://' + 'shrouded-sea-30945.herokuapp.com' +
       '/ws/chat/' + 'testroom/');
 
-    console.log(chatSocket);
-
     chatSocket.onmessage=(e)=>{
+        let myWord = false;
         var data = JSON.parse(e.data);
         var message = data['message'];
-        console.log(message);
-        console.log(this.state.messageArr);
+        var id = data['id'];
+        if(id === this.state.id){
+          myWord = true;
+        }
         let tmp = [...this.state.messageArr];
-        console.log(tmp.push(message));
+        let obj = {
+          'message': message,
+          'myWord': myWord
+        }
+        console.log(tmp.push(obj));
         this.setState({
           messageArr:tmp,
-        },()=>{
-          console.log(this.state.messageArr);
         })
         // document.querySelector('#chat-log').value += (message + '\n');
     };
@@ -46,7 +73,8 @@ class App extends Component {
 
   sendMessage=(message)=>{
     chatSocket.send(JSON.stringify({
-      'message': message
+      'message': message,
+      'id': this.state.id
     }));
   }
 
