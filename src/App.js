@@ -51,6 +51,7 @@ class App extends Component {
       this.setState({
         visible: false,
         confirmLoading: false,
+        ModalText: 'The Heroku server has terminated the connection, would you like to reconnect?'
       });
     }, 2000);
   }
